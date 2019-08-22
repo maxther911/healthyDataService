@@ -6,12 +6,21 @@ import lombok.Setter;
 import java.math.BigDecimal;
 
 public class Quantity {
+
     @Getter
     @Setter
-    private long code;
-    @Getter @Setter
+    private Type group;
+
+    @Getter
+    @Setter
+    private Type type;
+
+    @Getter
+    @Setter
     private Unit measurement;
-    @Getter @Setter
+
+    @Getter
+    @Setter
     private BigDecimal value;
 
 }

@@ -6,13 +6,11 @@ import lombok.Setter;
 
 @Builder
 public class Type {
-    @Getter
-    @Setter
+
+    @Getter @Setter
     private long code;
 
-    @Getter
-    @Setter
+    @Getter @Setter
     private String description;
-
 
 }

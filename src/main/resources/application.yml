@@ -5,4 +5,3 @@ server:
 spring:
   data:
     mongodb.uri: mongodb+srv://maxther911:Tecno2019@cluster0-r9f4s.mongodb.net/healthy
-

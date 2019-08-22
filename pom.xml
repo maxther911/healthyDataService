@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
@@ -20,6 +20,7 @@
         <spring-boot.version>2.1.3.RELEASE</spring-boot.version>
         <project.lombok.version>1.18.8</project.lombok.version>
         <springfox-swagger-ui.version>2.9.2</springfox-swagger-ui.version>
+        <okhttp.version>4.1.0</okhttp.version>
     </properties>
 
     <dependencyManagement>
@@ -104,8 +105,15 @@
             <artifactId>springfox-swagger2</artifactId>
             <version>${springfox-swagger-ui.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>${okhttp.version}</version>
+        </dependency>
 
     </dependencies>
+
 
     <build>
         <finalName>spring-boot-persistence</finalName>
@@ -119,6 +127,11 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
@@ -186,6 +199,11 @@
             <id>spring-milestones</id>
             <name>Spring Milestones</name>
             <url>https://repo.spring.io/milestone</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>mvnrepository</id>
+            <name>Central repository</name>
+            <url>https://repo1.maven.org/maven2/</url>
         </pluginRepository>
     </pluginRepositories>
 
