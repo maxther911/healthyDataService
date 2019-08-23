@@ -1,0 +1,18 @@
+{"id" : 20190604000046,
+"email": "john@gmail.com",
+"username": "maxther911@gmail.com",
+"enabled": false,
+"accountNonLocked": false,
+"accountNonExpired": false,
+"credentialsNonExpired": false,
+"data": {
+"id": 0,
+"apellidos": "Tovar Hernández",
+"ciudad": "Bogotá DC",
+"direccion": "Cra 80 c 8 53 Camino de San Gabriel Torre 1 apto 1508",
+"dni": "8870375",
+"email": null,
+"movil": "3223111451",
+"nombres": "Max Fredis",
+"pais": null,
+"telPrincipal": "14974557"}
