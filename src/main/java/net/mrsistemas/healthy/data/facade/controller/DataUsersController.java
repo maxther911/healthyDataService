@@ -6,8 +6,6 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import net.mrsistemas.healthy.data.business.model.User;
 import net.mrsistemas.healthy.data.business.repository.UserRepository;
-import net.mrsistemas.healthy.data.facade.model.Message;
-import net.mrsistemas.healthy.data.utils.Errors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,12 +32,12 @@ public class DataUsersController {
             @ApiResponse(code = HttpServletResponse.SC_NOT_FOUND, message = "ELEMENTO NOT FOUND") })
     @PostMapping(value = "/create")
     @ResponseBody
-    public ResponseEntity<Message>  create(@RequestBody(required = true) @Valid User user){
-        User userResponse = userRepository.save(user);
-        if (userResponse == null){
-            return new ResponseEntity<Message>( new Message(1010L, Errors.ERROR.toString(),"No fue posible almacenar los datos por favor verifique."), HttpStatus.BAD_REQUEST);
+    public ResponseEntity<User>  create(@RequestBody(required = true) @Valid User user){
+        user = userRepository.save(user);
+        if (user == null){
+            return new ResponseEntity<User>(user, HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<Message>( new Message(0L, Errors.INFO.toString(), "Datos Almacenado de manera exitosa.", userResponse), HttpStatus.OK);
+        return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 
     @ApiOperation("Actualizar la informacion de un usuario en la base de datos mongo db")
@@ -52,11 +50,11 @@ public class DataUsersController {
             @ApiResponse(code = HttpServletResponse.SC_NOT_FOUND, message = "ELEMENTO NOT FOUND") })
     @PostMapping(value = "/update/{id}")
     @ResponseBody
-    public ResponseEntity<Message>  update(@RequestBody(required = true) @Valid User user, @PathVariable(name = "id") String id){
-        User userResponse = userRepository.save(user);
-        if (userResponse == null){
-            return new ResponseEntity<Message>( new Message(1010L, Errors.ERROR.toString(),"No fue posible almacenar los datos por favor verifique."), HttpStatus.BAD_REQUEST);
+    public ResponseEntity<User>  update(@RequestBody(required = true) @Valid User user, @PathVariable(name = "id") String id){
+        user = userRepository.save(user);
+        if (user == null){
+            return new ResponseEntity<User>(user, HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<Message>( new Message(0L, Errors.INFO.toString(), "Datos Almacenado de manera exitosa.", userResponse), HttpStatus.OK);
+        return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 }

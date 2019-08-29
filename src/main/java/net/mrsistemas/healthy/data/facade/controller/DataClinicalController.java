@@ -4,8 +4,6 @@ import io.swagger.annotations.*;
 import net.mrsistemas.healthy.data.business.model.ClinicalData;
 import net.mrsistemas.healthy.data.business.repository.DiseaseRepository;
 import net.mrsistemas.healthy.data.business.service.FacadeOperations;
-import net.mrsistemas.healthy.data.facade.model.Message;
-import net.mrsistemas.healthy.data.utils.Errors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,15 +38,15 @@ public class DataClinicalController {
             @ApiResponse(code = HttpServletResponse.SC_NOT_FOUND, message = "ELEMENTO NOT FOUND")})
     @PostMapping(value = "/createDisseases/{id}")
     @ResponseBody
-    public ResponseEntity<Message> create(@RequestBody(required = true) @Valid ClinicalData data, @PathVariable(name = "id") String id) {
+    public ResponseEntity<ClinicalData> create(@RequestBody(required = true) @Valid ClinicalData data, @PathVariable(name = "id") String id) {
         if (data == null) {
-            return new ResponseEntity<Message>(new Message(1010L, Errors.ERROR.toString(), "La información ingresada está erronea, por favor verifique."), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<ClinicalData>(data, HttpStatus.BAD_REQUEST);
         } else {
             data = operations.save(data);
             if (data == null) {
-                return new ResponseEntity<Message>(new Message(1010L, Errors.ERROR.toString(), "No fue posible almacenar los datos por favor verifique."), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<ClinicalData>(data, HttpStatus.BAD_REQUEST);
             }
-            return new ResponseEntity<Message>(new Message(0L, Errors.INFO.toString(), "Datos Almacenado de manera exitosa.", data), HttpStatus.OK);
+            return new ResponseEntity<ClinicalData>(data, HttpStatus.OK);
         }
     }
 }

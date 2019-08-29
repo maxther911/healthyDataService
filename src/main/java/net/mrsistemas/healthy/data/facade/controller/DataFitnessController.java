@@ -2,8 +2,6 @@ package net.mrsistemas.healthy.data.facade.controller;
 
 import io.swagger.annotations.*;
 import net.mrsistemas.healthy.data.business.model.FisicalData;
-import net.mrsistemas.healthy.data.facade.model.Message;
-import net.mrsistemas.healthy.data.utils.Errors;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/third/fitness")
 public class DataFitnessController {
 
-    @PostMapping(value = "/create-data")
+    @PostMapping(value = "/create")
     @ApiOperation("Almacena los datos reportados por las diferentes aplicaciones integradas con el sistema, con estructura no sql.")
     @ApiResponses({
             @ApiResponse(code = HttpServletResponse.SC_OK, message = "OK"),
@@ -34,9 +32,9 @@ public class DataFitnessController {
             scopes = {
                     @AuthorizationScope(scope = "read", description = "Rol de lectura aplicable a cualquier rol dentro de la aplicación.")
             })
-    public ResponseEntity<Message> create(@RequestBody(required = true) FisicalData data) {
+    public ResponseEntity<FisicalData> create(@RequestBody(required = true) FisicalData data) {
 
-        return new ResponseEntity<Message>(new Message(0L, Errors.INFO.toString(), "Datos Almacenado de manera exitosa.", data), HttpStatus.OK);
+        return new ResponseEntity<FisicalData>(data, HttpStatus.OK);
     }
 
 

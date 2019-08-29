@@ -4,9 +4,7 @@ import io.swagger.annotations.*;
 import net.mrsistemas.healthy.data.business.model.DataSensor;
 import net.mrsistemas.healthy.data.business.model.User;
 import net.mrsistemas.healthy.data.business.repository.DataSensorRepository;
-import net.mrsistemas.healthy.data.facade.model.Message;
 import net.mrsistemas.healthy.data.service.ConsumeService;
-import net.mrsistemas.healthy.data.utils.Errors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,20 +36,20 @@ public class DataSensorsController {
             @ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "REQUEST INVÁLIDO"),
             @ApiResponse(code = HttpServletResponse.SC_NOT_FOUND, message = "ELEMENTO NOT FOUND")})
     @Authorization(value = "Oauth 2.0", scopes = { @AuthorizationScope(scope = "read", description = "Rol de lectura aplicable a cualquier rol dentro de la aplicación.")})
-    public ResponseEntity<Message> create(@RequestBody(required = true) DataSensor data) {
+    public ResponseEntity<DataSensor> create(@RequestBody(required = true) DataSensor data) {
         if (data == null)
-            return new ResponseEntity<Message>(new Message(0L, Errors.ERROR.toString(), "Error en la petición, verifique."), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<DataSensor>(new DataSensor(), HttpStatus.BAD_REQUEST);
         try {
             User user = new ConsumeService().getUserByService(data.getPatient().getId(), data.getPatient().getToken());
             user.setToken(null);
             data.setPatient(user);
             data = repository.save(data);
             if (data == null)
-                return new ResponseEntity<Message>(new Message(0L, Errors.ERROR.toString(), "Error almacenado los datos ingresados."), HttpStatus.INTERNAL_SERVER_ERROR);
-            return new ResponseEntity<Message>(new Message(new Long(HttpStatus.INTERNAL_SERVER_ERROR.value()), Errors.INFO.toString(), "Datos Almacenado de manera exitosa.", data), HttpStatus.OK);
+                return new ResponseEntity<DataSensor>(new DataSensor(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<DataSensor>(data, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<Message>(new Message(new Long(HttpStatus.INTERNAL_SERVER_ERROR.value()), Errors.ERROR.toString(), new String(e.getLocalizedMessage())), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<DataSensor>(new DataSensor(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
