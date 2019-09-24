@@ -44,15 +44,13 @@ public class User {
 
     @Getter
     @Setter
-    private boolean credentialsNonExpired
-    ;
+    private boolean credentialsNonExpired;
+
 
     @Getter
     @Setter
-    private String token;
+    private DataUser dataUser;
 
-    @Getter
-    @Setter
-    private DataUser data;
+
 
 }

@@ -6,6 +6,7 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -24,23 +25,22 @@ public class DataUser {
     private String dni;
 
     @Getter @Setter
-    private String nombres;
+    private String name;
 
     @Getter @Setter
-    private String apellidos;
+    private String lastName;
 
     @Getter @Setter
     private String ciudad;
 
     @Getter @Setter
-    private String direccion;
+    private String address;
 
     @Getter @Setter
     private String email;
 
     @Getter @Setter
-    @JsonProperty(value = "CellPhone")
-    private String movil;
+    private String cellphone;
 
     @Getter @Setter
     private String pais;
@@ -51,9 +51,8 @@ public class DataUser {
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     @JsonFormat(pattern = "YYYY-MM-dd")
-    @JsonProperty(value = "FechaDeNacimiento")
     @Getter @Setter
-    private LocalDate fNacimiento;
+    private LocalDate birthDate;
 
     @Getter
     private Long edad;
