@@ -20,7 +20,7 @@ public class DataSensor implements Serializable {
     private User patient;
 
     @Getter @Setter
-    private long id;
+    private String id;
 
     @Getter @Setter
     private long sensor_id;

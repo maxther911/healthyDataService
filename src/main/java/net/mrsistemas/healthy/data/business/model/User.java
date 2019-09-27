@@ -46,11 +46,4 @@ public class User {
     @Setter
     private boolean credentialsNonExpired;
 
-
-    @Getter
-    @Setter
-    private DataUser dataUser;
-
-
-
 }

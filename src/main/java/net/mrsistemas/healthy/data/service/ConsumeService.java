@@ -22,7 +22,8 @@ public class ConsumeService {
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful()) {
                 ObjectMapper objectMapper = new ObjectMapper();
-                return objectMapper.readValue(response.body().string(), User.class);
+                 User user = objectMapper.readValue(response.body().string(), User.class);
+                 return user;
             }
             throw new UnauthorizedException();
         }
