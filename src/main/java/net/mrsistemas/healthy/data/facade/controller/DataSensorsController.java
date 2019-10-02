@@ -1,19 +1,16 @@
 package net.mrsistemas.healthy.data.facade.controller;
 
+import com.mysema.query.types.Predicate;
 import io.swagger.annotations.*;
 import net.mrsistemas.healthy.data.business.model.DataSensor;
 import net.mrsistemas.healthy.data.business.model.User;
-import net.mrsistemas.healthy.data.business.repository.DataSensorOperationRepository;
 import net.mrsistemas.healthy.data.business.repository.DataSensorRepository;
-import net.mrsistemas.healthy.data.service.ConsumeService;
-import net.mrsistemas.healthy.data.utils.exceptions.UnauthorizedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -27,9 +24,8 @@ import java.util.List;
 @RequestMapping("/third/sensors")
 public class DataSensorsController {
 
+    @Autowired
     DataSensorRepository repository;
-
-    DataSensorOperationRepository dataRepository;
 
     @PostMapping(value = "/create")
     @ApiOperation("Reporta y registra los datos de un sensor en la base de datos con estructura no sql.")
@@ -65,7 +61,7 @@ public class DataSensorsController {
         if (id == null || id < 1)
             return new ResponseEntity<List<DataSensor>>(new LinkedList<DataSensor>(), HttpStatus.BAD_REQUEST);
         try {
-            List<DataSensor> data = dataRepository.findDataSensorsByUserId(id);
+            List<DataSensor> data = repository.findDataSensorByPatient(id);
             if (data == null)
                 return new ResponseEntity<List<DataSensor>>(new LinkedList<>(), HttpStatus.INTERNAL_SERVER_ERROR);
             return new ResponseEntity<List<DataSensor>>(data, HttpStatus.OK);
