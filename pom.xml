@@ -8,6 +8,7 @@
         <version>2.1.3.RELEASE</version>
         <relativePath/>
     </parent>
+
     <groupId>net.mrsistemas.healthy.data</groupId>
     <artifactId>healthyDataService</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -180,8 +181,14 @@
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>
-                </plugins>
-            </build>
+
+                            <plugin>
+                                <groupId>org.springframework.boot</groupId>
+                                <artifactId>spring-boot-maven-plugin</artifactId>
+                            </plugin>
+                        </plugins>
+                        <finalName>${project.artifactId}_${project.version}</finalName>
+                    </build>
         </profile>
     </profiles>
 
