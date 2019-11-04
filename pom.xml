@@ -11,6 +11,7 @@
     <groupId>net.mrsistemas.healthy.data</groupId>
     <artifactId>healthyDataService</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
     <name>healthyDataService</name>
     <description>Módulo de gestión de datos no sql</description>
 
