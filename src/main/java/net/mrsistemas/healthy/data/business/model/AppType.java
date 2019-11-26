@@ -10,8 +10,8 @@ import java.math.BigDecimal;
 
 public class AppType {
 
-    @NonNull @Getter @Setter
-    private long code;
+    @Getter @Setter
+    private String code;
     @Getter @Setter
     private Type category;
     @Getter @Setter

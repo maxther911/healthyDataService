@@ -1,6 +1,5 @@
 package net.mrsistemas.healthy.data.facade.model;
 
-
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

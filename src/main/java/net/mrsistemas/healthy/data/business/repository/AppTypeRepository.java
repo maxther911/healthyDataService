@@ -1,8 +1,9 @@
 package net.mrsistemas.healthy.data.business.repository;
 
-import net.mrsistemas.healthy.data.business.model.User;
+import net.mrsistemas.healthy.data.business.model.AppType;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends MongoRepository<User, Long> {}
+public interface AppTypeRepository extends MongoRepository<AppType, Long> {
+}
