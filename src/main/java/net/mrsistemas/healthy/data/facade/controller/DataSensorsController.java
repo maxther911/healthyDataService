@@ -55,6 +55,7 @@ public class DataSensorsController {
             @ApiResponse(code = HttpServletResponse.SC_OK, message = "OK"),
             @ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "INTERNAL ERROR SERVER"),
             @ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "REQUEST INVALIDO"),
+            @ApiResponse(code = HttpServletResponse.SC_NO_CONTENT, message = "NO DATA FOUND"),
             @ApiResponse(code = HttpServletResponse.SC_NOT_FOUND, message = "ELEMENTO NOT FOUND")})
     @Authorization(value = "Oauth 2.0", scopes = {@AuthorizationScope(scope = "read", description = "Rol de lectura aplicable a cualquier rol dentro de la aplicación.")})
     public ResponseEntity<List<DataSensor>> get(@PathVariable(required = true, name = "id") Long id) {
@@ -62,8 +63,8 @@ public class DataSensorsController {
             return new ResponseEntity<List<DataSensor>>(new LinkedList<DataSensor>(), HttpStatus.BAD_REQUEST);
         try {
             List<DataSensor> data = repository.findDataSensorByPatient(id);
-            if (data == null)
-                return new ResponseEntity<List<DataSensor>>(new LinkedList<>(), HttpStatus.INTERNAL_SERVER_ERROR);
+            if (data == null || data.size() == 0)
+                return new ResponseEntity<List<DataSensor>>(new LinkedList<>(), HttpStatus.NO_CONTENT);
             return new ResponseEntity<List<DataSensor>>(data, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
