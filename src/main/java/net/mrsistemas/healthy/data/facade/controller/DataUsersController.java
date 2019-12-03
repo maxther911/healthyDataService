@@ -58,4 +58,23 @@ public class DataUsersController {
             return new ResponseEntity<User>(user, HttpStatus.BAD_REQUEST);
         }
     }
+
+    @ApiOperation("Actualizar la informacion de un usuario en la base de datos mongo db")
+    @ApiResponses({
+            @ApiResponse(code = HttpServletResponse.SC_OK, message = "OK"),
+            @ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "INTERNAL ERROR SERVER"),
+            @ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = "UNAUTHORIZED"),
+            @ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "FORBIDDEN"),
+            @ApiResponse(code = HttpServletResponse.SC_NOT_FOUND, message = "ELEMENTO NOT FOUND")})
+    @GetMapping(value = "/get/{id}")
+    @ResponseBody
+    public ResponseEntity<User> getById(@PathVariable(name = "id") Long id) {
+        User user = null;
+        try {
+            user = userRepository.findById(id).get();
+            return new ResponseEntity<User>(user, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<User>(user, HttpStatus.BAD_REQUEST);
+        }
+    }
 }

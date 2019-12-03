@@ -1,12 +1,11 @@
 package net.mrsistemas.healthy.data.business.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mongodb.client.model.Collation;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -18,21 +17,34 @@ public class Disease {
 
     //@Getter @Setter
     //private ObjectId id;
-    @Getter @Setter
-    private String _id;
-    @Getter @Setter
+    @Getter
+    @Setter
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    private String id;
+    @Getter
+    @Setter
     private String code;
-    @Getter @Setter
+    @Getter
+    @Setter
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private Type type;
-    @Getter @Setter
+    @Getter
+    @Setter
     private CategoryDissease category;
-    @Getter @Setter
+    @Getter
+    @Setter
     private String name;
-    @Getter @Setter
+    @Getter
+    @Setter
     @JsonIgnore
     private List ins;
-    @Getter @Setter
+    @Getter
+    @Setter
     @JsonIgnore
     private List out;
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Getter
+    @Setter
+    private Long risk;
 
 }

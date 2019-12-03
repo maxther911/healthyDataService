@@ -1,6 +1,5 @@
 package net.mrsistemas.healthy.data.business.service;
 
-import com.mongodb.client.MongoClients;
 import net.mrsistemas.healthy.data.business.model.App;
 import net.mrsistemas.healthy.data.business.model.AppType;
 import net.mrsistemas.healthy.data.business.model.ClinicalData;
@@ -30,7 +29,7 @@ public class FacadeOperations {
     DiseaseRepository diseaseRepository;
 
     private FacadeOperations(MongoTemplate mongoTemplate) {
-        this.mongoTemplate = mongoTemplate;
+        FacadeOperations.mongoTemplate = mongoTemplate;
     }
 
     public static final FacadeOperations INSTANCE() {
