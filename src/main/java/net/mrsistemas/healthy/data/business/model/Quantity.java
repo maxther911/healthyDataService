@@ -21,6 +21,6 @@ public class Quantity {
 
     @Getter
     @Setter
-    private BigDecimal value;
+    private String value;
 
 }
